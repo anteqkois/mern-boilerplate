@@ -1,0 +1,20 @@
+{
+  "name": "mern-boilerplate",
+  "version": "1.0.0",
+  "description": "It's my own boilerplate to mern stack projects, to quick start and to get basic settings.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anteqkois/mern-boilerplate.git"
+  },
+  "author": "Antek Kois",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anteqkois/mern-boilerplate/issues"
+  },
+  "homepage": "https://github.com/anteqkois/mern-boilerplate#readme"
+}
