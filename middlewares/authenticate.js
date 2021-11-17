@@ -2,11 +2,6 @@ import { createApiError } from '../middlewares/errors.js';
 import jwt from 'jsonwebtoken';
 
 const authenticate = (req, res, next) => {
-  // console.log(req.headers)
-
-  // const authHeader = req.headers['Authorization'];
-  // const token = authHeader && authHeader.split(' ')[1];
-
   const token = req.cookies.JWT;
 
   (token === null || token === undefined) &&
