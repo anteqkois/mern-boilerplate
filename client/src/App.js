@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom';
 
 import { ThemeProvider } from './providers/ThemeContext';
-import { ErrorProvider } from './hooks/useError';
+import { ErrorProvider } from './providers/ErrorContext';
 
 import MainLayout from './layouts/MainLayout';
 import ScrollToTop from './components/utils/ScrollToTop';
 import NotFound from './components/utils/NotFound';
+import Test from './components/Test';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -31,29 +32,18 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 function App() {
   return (
     <ThemeProvider>
-      <ErrorProvider>
-        <Router>
+      <Router>
+        <ErrorProvider>
           <MainLayout>
             <ScrollToTop />
             <Switch>
               <PrivateRoute path="/admin" component={<h1>Admin</h1>} />
-              <Route
-                exact
-                path="/Home"
-                component={
-                  <>
-                    <h1>Home</h1>
-                    <div className="App">
-                      <header className="App-header"></header>
-                    </div>
-                  </>
-                }
-              />
+              <Route exact path="/" component={Test} />
               <Route path="*" component={NotFound} />
             </Switch>
           </MainLayout>
-        </Router>
-      </ErrorProvider>
+        </ErrorProvider>
+      </Router>
     </ThemeProvider>
   );
 }
