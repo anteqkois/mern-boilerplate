@@ -28,7 +28,7 @@ const StyledTestTwo = styled.div`
 `;
 
 function Test() {
-  //const setError = useError();
+  // const setError = useError();
 
   // useEffect(() => {
   //   const timeOut = setTimeout(() => {
@@ -38,8 +38,6 @@ function Test() {
   //     clearTimeout(timeOut);
   //   };
   // }, [setError]);
-
-  // setError('Coś poszło nie tak')
 
   return (
     <>

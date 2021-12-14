@@ -1,7 +1,7 @@
 // Error modal must take props: errorMessage, handleResetError
 
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const ErrorContext = React.createContext();
 
@@ -17,12 +17,12 @@ function ErrorModal({ errorMessage, handleResetError }) {
 export const ErrorProvider = ({ children }) => {
   const [redirectPath, setRedirectPath] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleResetError = () => {
     setErrorMessage('');
     setRedirectPath('');
-    redirectPath && history.push(redirectPath);
+    redirectPath && navigate(redirectPath);
   };
 
   return (

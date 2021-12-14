@@ -5,15 +5,22 @@ import validator from 'validator';
 const User = mongoose.Schema({
   email: {
     type: String,
-    required: [true, 'Please enter an email'],
+    required: [true, 'E-mail jest wymagany'],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, 'Please enter a valid email'],
+    validate: [validator.isEmail, 'Niepoprawny e-mail'],
+  },
+  nick: {
+    type: String,
+    required: [true, 'Wprowadź nazwę'],
+    unique: true,
+    lowercase: true,
+    minlength: [6, 'Minimalna ilość znakó nazwy to 6'],
   },
   password: {
     type: String,
-    required: [true, 'Please enter a password'],
-    minlength: [6, 'Minimum password length is 6 characters'],
+    required: [true, 'Wprowadź hasło'],
+    minlength: [6, 'Minimalna ilość znaków w haśle to 6'],
   },
 });
 
