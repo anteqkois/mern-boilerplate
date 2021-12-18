@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
 } from 'react-router-dom';
 
 import { ThemeProvider } from './providers/ThemeContext';
@@ -13,20 +14,9 @@ import ScrollToTop from './components/utils/ScrollToTop';
 import NotFound from './components/utils/NotFound';
 import Test from './components/Test';
 
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={(props) =>
-//       sessionStorage.getItem('isLogined') ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect
-//           to={{ pathname: '/login', state: { from: props.location } }}
-//         />
-//       )
-//     }
-//   />
-// );
+const PrivateRoute = ({ children }) =>
+  // sessionStorage.getItem('isLogined') ? children : <Navigate to={{ pathname: '/login' }} />;
+  children;
 
 function App() {
   return (
@@ -38,7 +28,15 @@ function App() {
             <Routes>
               {/* <PrivateRoute path="/admin" component={<h1>Admin</h1>} /> */}
               <Route path="/" element={<Test/>} />
-              <Route path="*" component={<NotFound/>} />
+              <Route
+                path="/home"
+                element={
+                  <PrivateRoute>
+                    <h1>Strona prywatna.</h1>
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<NotFound/>} />
             </Routes>
           </MainLayout>
         </ErrorProvider>
@@ -48,20 +46,3 @@ function App() {
 }
 
 export default App;
-
-// return (
-//   <ThemeProvider>
-//     <Router>
-//       <ErrorProvider>
-//         <MainLayout>
-//           <ScrollToTop />
-//           <Switch>
-//             <PrivateRoute path="/admin" component={<h1>Admin</h1>} />
-//             <Route exact path="/" component={Test} />
-//             <Route path="*" component={NotFound} />
-//           </Switch>
-//         </MainLayout>
-//       </ErrorProvider>
-//     </Router>
-//   </ThemeProvider>
-// );
