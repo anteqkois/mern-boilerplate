@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 
-const User = mongoose.Schema({
+export const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: [true, 'E-mail jest wymagany'],
@@ -10,12 +10,12 @@ const User = mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Niepoprawny e-mail'],
   },
-  nick: {
+  username: {
     type: String,
     required: [true, 'Wprowadź nazwę'],
     unique: true,
     lowercase: true,
-    minlength: [6, 'Minimalna ilość znakó nazwy to 6'],
+    minlength: [6, 'Minimalna ilość znaków nazwy to 6'],
   },
   password: {
     type: String,
@@ -24,10 +24,10 @@ const User = mongoose.Schema({
   },
 });
 
-User.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-export default mongoose.model('User', User);
+export default mongoose.model('User', userSchema);
